@@ -7,7 +7,7 @@ CREATE TABLE activities (
 	cost INTEGER CHECK (cost IN (0, 1, 2, 3)),
 	distance INTEGER CHECK (distance IN (0, 1, 2, 3, 4)),
 	time INTEGER CHECK (time IN (1, 2, 3, 4)),
-	group BOOLEAN,
+	friends BOOLEAN,
 	counter INTEGER DEFAULT 0,
 	description TEXT,
 	url TEXT,

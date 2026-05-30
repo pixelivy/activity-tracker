@@ -33,7 +33,7 @@ class createActivity(SQLModel):
     cost: int = Field(default=2)
     distance: int = Field(default=2)
     time: int = Field(default=2)
-    group: bool
+    friends: bool
     description: str
     url: str
 
