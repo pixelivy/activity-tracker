@@ -38,7 +38,7 @@ class createActivity(SQLModel):
     url: str
 
 class updateActivity(SQLModel):
-    id: str
+    id: int
     description: str
     url: str
 
