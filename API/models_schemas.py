@@ -20,7 +20,7 @@ class Activity(SQLModel, table=True):
     cost: int
     distance: int
     time: int
-    group: bool
+    friends: bool
     counter: int = Field(default=0)
     description: Optional[str] = None
     url: Optional[str] = None
