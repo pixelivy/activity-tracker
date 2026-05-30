@@ -53,7 +53,7 @@ class getActivity(SQLModel):
     url: str
 
 class getRecommendation(SQLModel):
-    capacities: str
-    cost: str
-    distance: str
-    time: str
+    capacities: int
+    cost: int
+    distance: int
+    time: int
