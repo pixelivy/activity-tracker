@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from sqlmodel import select
-from API.models_schemas import getRecommendation, getActivity, createActivity, updateActivity, Activity
+from API.models_schemas import getActivity, createActivity, updateActivity, Activity
 from API.database import SessionDep
 
 app = FastAPI()
