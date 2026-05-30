@@ -28,33 +28,27 @@ class Activity(SQLModel, table=True):
 
 class createActivity(SQLModel):
     name: str
-    capacities: str
-    cost: str
-    distance: str
-    time: str
+    capacities: int = Field(default=2)
+    cost: int = Field(default=2)
+    distance: int = Field(default=2)
+    time: int = Field(default=2)
     description: str
     url: str
-
 
 class updateActivity(SQLModel):
+    id: str
     description: str
     url: str
-
-class deleteActivity(SQLModel):
-    id: int
-    deleted: bool
-    delete_time: datetime
 
 class getActivity(SQLModel):
     name: str
-    capacities: str
-    cost: str
-    distance: str
-    time: str
+    capacities: int
+    cost: int
+    distance: int
+    time: int
     counter: int
     description: str
     url: str
-
 
 class getRecommendation(SQLModel):
     capacities: str
