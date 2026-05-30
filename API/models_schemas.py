@@ -20,6 +20,7 @@ class Activity(SQLModel, table=True):
     cost: int
     distance: int
     time: int
+    group: bool
     counter: int = Field(default=0)
     description: Optional[str] = None
     url: Optional[str] = None
@@ -32,6 +33,7 @@ class createActivity(SQLModel):
     cost: int = Field(default=2)
     distance: int = Field(default=2)
     time: int = Field(default=2)
+    group: bool
     description: str
     url: str
 
