@@ -1,0 +1,19 @@
+name: ActivityReccomend
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: docker/api_Dockerfile
+    container_name: fastapi
+    networks:
+      - backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./DB:/DB
+    restart: no
+
+networks:
+  backend:
+    name: backend
