@@ -8,3 +8,11 @@
     --color-text: #011627;
     --color-edge: #6d1a36;
 }
+
+.root {
+    isolation: isolate;
+}
+
+body {
+    position: relative;
+}
