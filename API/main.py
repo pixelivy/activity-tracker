@@ -1,37 +1,47 @@
-from fastapi import FastAPI
-from models_schemas import standardResponse, getRecommendation, getActivity, createActivity, updateActivity, deleteActivity, Activity
-from database import SessionDep
+from fastapi import FastAPI, HTTPException
+from API.models_schemas import getRecommendation, getActivity, createActivity, updateActivity, Activity
+from API.database import SessionDep
 
 app = FastAPI()
 
-@app.post("add_activity", response_model=standardResponse)
-def addActivity(activity_in: createActivity, session: SessionDep):
-    input = Activity.model_validate(activity_in.model_dump())
-    session.add(input)
+@app.post("/add_activity")
+def addActivity(input: createActivity, session: SessionDep):
+    activity = Activity.model_validate(input.model_dump())
+    session.add(activity)
     session.commit()
-    session.refresh(input)
-    return input
+    return {"status": "200", "message": "Activity created"}
 
-@app.patch("choose_activity")
-def chooseActivity():
-    return None
+@app.patch("/choose_activity")
+def chooseActivity(id: int, session: SessionDep):
+    activity = session.get(Activity, id)
+    if not activity:
+        raise HTTPException(status_code=404, detail="Activity not found")
+    update = {"counter": int(activity.counter) + 1}
+    activity.sqlmodel_update(update)
+    session.add(activity)
+    session.commit()
+    return {"status": "200", "message": "Activity created"}
 
-@app.patch("update_activity")
-def updateActivity():
-    return None
+@app.patch("/update_activity")
+def updateActivity(input: updateActivity, session: SessionDep):
+    activity = Activity.model_validate(input)
+    session.add(activity)
+    session.commit()
+    return {"status": "200", "message": "Activity created"}
 
-@app.delete("delete_activity")
+@app.delete("/delete_activity")
 def addActivity():
     return None
 
-@app.get("get_activity")
-def getActivity():
-    return None
+@app.get("/get_activity/")
+def getActivity(id: int):
 
-@app.get("get_activities")
+    return {}
+
+@app.get("/get_activities")
 def getActivities():
     return None
 
-@app.get("get_recommendations")
+@app.get("/get_recommendations")
 def getRecommendations():
     return None
