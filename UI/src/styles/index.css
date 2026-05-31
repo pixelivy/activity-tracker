@@ -16,3 +16,10 @@
 body {
     position: relative;
 }
+
+[data-pressed] {
+    background-color: var(--color-primary);
+    box-shadow: inset;
+    position: relative;
+    z-index: 10;
+}
