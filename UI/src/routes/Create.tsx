@@ -3,6 +3,7 @@ import { CategoryCheckbox, CategoryPicker } from "../components/OptionTools";
 import type { Item } from "../utils/interfaces";
 
 export default function Create() {
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000").replace(/\/$/, "");
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [url, setUrl] = useState<string>("");
@@ -52,7 +53,7 @@ export default function Create() {
         };
 
         try {
-            const response = await fetch("http://localhost:8000/add_activity", {
+            const response = await fetch(`${apiBaseUrl}/add_activity`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -61,7 +62,8 @@ export default function Create() {
             });
 
             if (!response.ok) {
-                setMessage("Could not create activity.");
+                const errorText = await response.text();
+                setMessage(`Could not create activity (HTTP ${response.status})${errorText ? `: ${errorText}` : "."}`);
                 return;
             }
 
@@ -74,8 +76,12 @@ export default function Create() {
             setDistance(2);
             setTime(2);
             setFriends(false);
-        } catch {
-            setMessage("Could not create activity.");
+        } catch (error) {
+            if (error instanceof Error) {
+                setMessage(`Network error while creating activity: ${error.message}`);
+                return;
+            }
+            setMessage("Network error while creating activity.");
         }
     }
 
