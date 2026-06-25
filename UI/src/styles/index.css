@@ -2,9 +2,9 @@
 
 @theme{
     --color-back: #f7dee7;
-    --color-surface: #ecba82;
+    --color-surface: #d8bfd8;
     --color-primary: #f0a8ce;
-    --color-accent: #53917e;
+    --color-accent: #9be7ff;
     --color-text: #011627;
     --color-edge: #6d1a36;
 }
@@ -18,8 +18,12 @@ body {
 }
 
 [data-pressed] {
-    background-color: var(--color-primary);
+    background-color: var(--color-accent);
     box-shadow: inset;
     position: relative;
     z-index: 10;
+}
+
+[data-checked]{
+    background-color: var(--color-accent);
 }

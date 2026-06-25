@@ -3,13 +3,18 @@ import { Toggle } from '@base-ui/react';
 import {Checkbox} from '@base-ui/react/checkbox'
 import type { Dispatch, SetStateAction } from 'react';
 import type { Item } from '../utils/interfaces';
+import {FaCheck} from 'react-icons/fa';
 
-export function CategoryPicker({ category, options, value, setValue }: {category: string, options: Item[], value: number, setValue: Dispatch<SetStateAction<number>>}) {
+export function CategoryPicker({ category, options, value, setValue }:
+    {category: string,
+    options: Item[],
+    value: number,
+    setValue: Dispatch<SetStateAction<number>>}) {
     return (
         <div>
-            <p className='text-text'>{category}</p>
+            <label className='text-text text-s md:text-2xl p-1 md:p-5'>{category}</label>
             <ToggleGroup
-                className="inline-flex rounded-md shadow-sm"
+                className="inline-flex rounded-md shadow-sm m-1.5 md:m-4"
                 value={[String(value)]}
                 onValueChange={(groupValue) => setValue(Number(groupValue[0] ?? value))}
             >
@@ -17,11 +22,11 @@ export function CategoryPicker({ category, options, value, setValue }: {category
                     <Toggle
                     key={String(option.name)}
                     value={String(option.value)}
-                        className="px-4 py-2 text-sm font-medium border border-edge
+                        className="px-2 md:px-4 py-2 text-xs md:text-xl font-medium border border-edge
                         first:rounded-l-md last:rounded-r-md -ml-px first:ml-0
-                        bg-back text-text hover:bg-surface"
+                        bg-primary text-text hover:bg-surface"
                     >
-                        {option.name}
+                        <label className='text-text text-l p-0 md:p-3'>{option.name}</label>
                     </Toggle>
                 ))}
             </ToggleGroup>
@@ -31,30 +36,17 @@ export function CategoryPicker({ category, options, value, setValue }: {category
 
 export function CategoryCheckbox({ category, value, setValue }: { category: string, value: boolean, setValue: Dispatch<SetStateAction<boolean>> }) {
     return (
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <div className="flex items-center gap-2 m-1.5 md:m-4">
             <Checkbox.Root
                 checked={value}
                 onCheckedChange={setValue}
-                style={{
-                    width: "1rem",
-                    height: "1rem",
-                    border: "1px solid #333",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#fff",
-                }}
+                className="size-6 border-2 border-edge flex items-center justify-center bg-primary"
             >
-                <Checkbox.Indicator
-                    style={{
-                        width: "0.75rem",
-                        height: "0.75rem",
-                        background: "#333",
-                        display: "block",
-                    }}
-                />
+                <Checkbox.Indicator>
+                    <FaCheck/>
+                </Checkbox.Indicator>
             </Checkbox.Root>
-            <label>{category}</label>
+            <label className='text-text text-s md:text-2xl'>{category}</label>
         </div>
     );
 }
