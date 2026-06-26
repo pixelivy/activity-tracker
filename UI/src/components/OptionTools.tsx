@@ -11,8 +11,8 @@ export function CategoryPicker({ category, options, value, setValue }:
     value: number,
     setValue: Dispatch<SetStateAction<number>>}) {
     return (
-        <div>
-            <label className='text-text text-s md:text-2xl p-1 md:p-5'>{category}</label>
+        <div className='flex flex-col items-start gap-0'>
+            <label className='text-text text-s md:text-2xl ml-1.5 md:ml-4'>{category}</label>
             <ToggleGroup
                 className="inline-flex rounded-md shadow-sm m-1.5 md:m-4"
                 value={[String(value)]}
@@ -24,7 +24,7 @@ export function CategoryPicker({ category, options, value, setValue }:
                     value={String(option.value)}
                         className="px-2 md:px-4 py-2 text-xs md:text-xl font-medium border border-edge
                         first:rounded-l-md last:rounded-r-md -ml-px first:ml-0
-                        bg-primary text-text hover:bg-surface"
+                        bg-primary text-text hover:bg-accent"
                     >
                         <label className='text-text text-l p-0 md:p-3'>{option.name}</label>
                     </Toggle>
@@ -49,4 +49,19 @@ export function CategoryCheckbox({ category, value, setValue }: { category: stri
             <label className='text-text text-s md:text-2xl'>{category}</label>
         </div>
     );
+}
+
+export function InputField({label, value, setValue}:{label: string, value: string, setValue: Dispatch<SetStateAction<string>>}){
+    return(
+    <div className="flex flex-col items-start gap-2 ml-1.5 md:ml-4">
+                <label className='text-text text-s md:text-2xl'>{label}</label>
+                <input
+                    id="name"
+                    type="text"
+                    value={value}
+                    onChange={(event) => setValue(event.target.value)}
+                    required
+                    className="ml-2 rounded border border-edge bg-surface text-medium px-2 py-1"
+                    />
+            </div>)
 }
