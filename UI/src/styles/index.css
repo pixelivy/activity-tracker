@@ -19,6 +19,7 @@ body {
 
 [data-pressed] {
     background-color: var(--color-accent);
+    opacity: 95%;
     box-shadow: inset;
     position: relative;
     z-index: 10;
