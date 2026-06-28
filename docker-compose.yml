@@ -4,7 +4,7 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: docker/api_Dockerfile
+      dockerfile: docker/api.Dockerfile
     container_name: fastapi
     networks:
       - backend
