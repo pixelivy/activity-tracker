@@ -2,6 +2,13 @@ export interface Item {
     name: string;
     value: number;
 };
+
+export type Activity = {
+    id: number;
+    name: string;
+    description: string;
+};
+
 export const costItems: Item[] = [
         { name: "no cost", value: 0 },
         { name: "cheap", value: 1 },
